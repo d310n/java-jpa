@@ -4,7 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "player")
-public class Player {
+public class Player
+{
 
     private int id;
     private String firstname;
