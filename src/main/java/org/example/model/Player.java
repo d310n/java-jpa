@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "player")
 public class Player
 {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstname;
     private String lastname;
@@ -16,16 +17,10 @@ public class Player
 
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getId()
     {
         return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
     }
 
     public String getFirstname()
