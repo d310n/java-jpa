@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class PlayerController {
+public class PlayerController
+{
 
     @Autowired
     private PlayerService playerService;
@@ -39,8 +39,45 @@ public class PlayerController {
     }
 
     // RESTful API method for Create operation
+    @PostMapping("/players")
+    public ResponseEntity<Player> saveCustomer(@RequestBody Player player) {
+        try
+        {
+            return new ResponseEntity<Player>(playerService.add(player), HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<Player>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     // RESTful API method for Update operation
+    @PutMapping("/players")
+    public ResponseEntity<Player> updateCustomer(@RequestBody Player player) {
+        try
+        {
+            return new ResponseEntity<Player>(playerService.add(player), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<Player>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     // RESTful API method for Delete operation
+    @DeleteMapping("/players/{id}")
+    public ResponseEntity<HttpStatus> deletePlayer(@PathVariable Integer id) {
+        try
+        {
+            playerService.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
+
+
