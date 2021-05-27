@@ -29,4 +29,10 @@ public class PlayerService
     {
         return playerRepository.findById(id).get();
     }
+
+    public Player add(Player player) {
+        return null; }
+
+    public void delete(Integer id) {
+    }
 }
